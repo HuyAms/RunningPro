@@ -190,14 +190,14 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
 
     private fun endRunAndSaveToDb() {
         map?.snapshot { bmp ->
-            var distanceInMeter = 0
+            var distanceInMeters = 0
             for(polyline in pathPoints) {
-                distanceInMeter += TrackingUtility.calculatePolylineLength(polyline).toInt()
+                distanceInMeters += TrackingUtility.calculatePolylineLength(polyline).toInt()
             }
-            val avgSpeed = round(distanceInMeter / 1000f) / (curTimeInMillis / 1000 / 60 / 60 * 10) / 10f
+            val avgSpeed = round((distanceInMeters / 1000f) / (curTimeInMillis / 1000f / 60 / 60) * 10) / 10f
             val dateTimestamp = Calendar.getInstance().timeInMillis
-            val calorieBurned = ((distanceInMeter / 1000f) * weight).toInt()
-            val run = Run(bmp, dateTimestamp, avgSpeed, distanceInMeter, curTimeInMillis, calorieBurned)
+            val caloriesBurned = ((distanceInMeters / 1000f) * weight).toInt()
+            val run = Run(bmp, dateTimestamp, avgSpeed, distanceInMeters, curTimeInMillis, caloriesBurned)
             viewModel.insertRun(run)
             Snackbar.make(
                 requireActivity().findViewById(R.id.rootView),
