@@ -1,6 +1,9 @@
 package com.example.runningpro.ui
 
+import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.Intent.ACTION_BATTERY_LOW
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.runningpro.R
 import com.example.runningpro.db.RunDao
 import com.example.runningpro.other.Constants.ACTION_SHOW_TRACKING_FRAGMENT
+import com.example.runningpro.services.BatteryReceiver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -17,9 +21,14 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    val br: BroadcastReceiver = BatteryReceiver()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val filter = IntentFilter(ACTION_BATTERY_LOW)
+        registerReceiver(br, filter)
 
         navigateToTrackingFragmentIfNeeded(intent)
 
