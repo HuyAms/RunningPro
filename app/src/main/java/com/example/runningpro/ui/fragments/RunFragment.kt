@@ -37,6 +37,7 @@ class RunFragment: Fragment(R.layout.fragment_run), EasyPermissions.PermissionCa
             SortType.DISTANCE -> spFilter.setSelection(2)
             SortType.AVG_SPEED -> spFilter.setSelection(3)
             SortType.CALORIES_BURNED -> spFilter.setSelection(4)
+            SortType.STEPS -> spFilter.setSelection(5)
         }
 
         spFilter.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
@@ -47,6 +48,7 @@ class RunFragment: Fragment(R.layout.fragment_run), EasyPermissions.PermissionCa
                     2 -> viewModel.sortRuns(SortType.DISTANCE)
                     3 -> viewModel.sortRuns(SortType.AVG_SPEED)
                     4 -> viewModel.sortRuns(SortType.CALORIES_BURNED)
+                    5 -> viewModel.sortRuns(SortType.STEPS)
                 }
             }
 
