@@ -13,6 +13,7 @@ import com.example.runningpro.other.TrackingUtility
 import kotlinx.android.synthetic.main.item_run.view.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 class RunAdapter : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
     inner class RunViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -65,6 +66,8 @@ class RunAdapter : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
             tvTime.text = TrackingUtility.getFormattedStopWatchTime(run.timeInMillis)
             val caloriesBurned = "${run.caloriesBurned}kcal"
             tvCalories.text = caloriesBurned
+
+            tvSteps.text = "${run.steps.roundToInt()}steps"
         }
     }
 
