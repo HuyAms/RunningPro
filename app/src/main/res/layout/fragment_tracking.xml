@@ -51,6 +51,17 @@
             app:layout_constraintStart_toEndOf="@+id/btnToggleRun"
             app:layout_constraintTop_toBottomOf="@+id/tvTimer" />
 
+        <TextView
+            android:id="@+id/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Weather:"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

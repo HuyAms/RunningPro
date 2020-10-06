@@ -3,6 +3,7 @@ package com.example.runningpro.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,8 +18,10 @@ import com.example.runningpro.other.Constants.MAP_ZOOM
 import com.example.runningpro.other.Constants.POLYLINE_COLOR
 import com.example.runningpro.other.Constants.POLYLINE_WIDTH
 import com.example.runningpro.other.TrackingUtility
+import com.example.runningpro.repositories.WeatherRepository
 import com.example.runningpro.services.Polyline
 import com.example.runningpro.services.TrackingService
+import com.example.runningpro.services.WeatherResponse
 import com.example.runningpro.ui.viewmodels.MainViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -28,6 +31,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_tracking.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 import javax.inject.Inject
 import kotlin.math.round
@@ -69,6 +75,8 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
             addAllPolylines()
         }
         subscribeToObservers()
+
+        getWeather("helsinki")
     }
 
     private fun subscribeToObservers() {
@@ -259,5 +267,33 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         mapView?.onSaveInstanceState(outState)
+    }
+
+    fun getWeather(name: String) {
+
+        val repository = WeatherRepository()
+
+        val call = repository.getWeather(name)
+
+        call.enqueue(object : Callback<WeatherResponse?> {
+            override fun onResponse(
+                call: Call<WeatherResponse?>?,
+                response: Response<WeatherResponse?>
+            ) {
+                if (response.isSuccessful()) {
+                    val data = response.body() as WeatherResponse
+                    weather.text = "Weather: ${data.weather[0].description}"
+
+                    Log.d("RESPONSE WEATHER: ", data.weather[0].description)
+
+                }
+            }
+
+            override fun onFailure(call: Call<WeatherResponse?>, t: Throwable) {
+                Log.d("RESPONSE WEATHER: ", t.localizedMessage)
+            }
+        })
+
+
     }
 }

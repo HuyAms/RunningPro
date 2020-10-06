@@ -25,4 +25,5 @@ class MainRepository @Inject constructor(val runDao: RunDao) {
 
     fun getTotalCaloriesBurned() = runDao.getTotalCaloriesBurned()
 
-    fun getTotalTimeInMillis() = runDao.getTotalTimeInMillis()}
+    fun getTotalTimeInMillis() = runDao.getTotalTimeInMillis()
+}
