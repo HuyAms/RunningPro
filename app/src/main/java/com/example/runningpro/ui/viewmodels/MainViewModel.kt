@@ -18,6 +18,7 @@ class MainViewModel @ViewModelInject constructor(
     private val runsSortedByCaloriesBurned = mainRepository.getAllRunsSortedByCaloriesBurned()
     private val runsSortedByTimeInMillis = mainRepository.getAllRunsSortedByTimeInMillis()
     private val runsSortedByAvgSpeed = mainRepository.getAllRunsSortedByAvgSpeed()
+    private val runsSortedBySteps = mainRepository.getAllRunsSortedBySteps()
 
     val runs = MediatorLiveData<List<Run>>()
     var sortType = SortType.DATE
@@ -62,6 +63,14 @@ class MainViewModel @ViewModelInject constructor(
                 }
             }
         }
+
+        runs.addSource(runsSortedBySteps) {result ->
+            if (sortType === SortType.STEPS) {
+                result?.let {
+                    runs.value = it
+                }
+            }
+        }
     }
 
     fun sortRuns(sortType: SortType) = when(sortType) {
@@ -70,6 +79,7 @@ class MainViewModel @ViewModelInject constructor(
         SortType.AVG_SPEED -> runsSortedByAvgSpeed.value?.let { runs.value = it }
         SortType.CALORIES_BURNED -> runsSortedByCaloriesBurned.value?.let { runs.value = it }
         SortType.DISTANCE -> runsSortedByDistance.value?.let { runs.value = it }
+        SortType.STEPS -> runsSortedBySteps.value?.let { runs.value = it }
     }.also {
         this.sortType = sortType
     }
