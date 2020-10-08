@@ -66,8 +66,13 @@ class RunAdapter : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
             tvTime.text = TrackingUtility.getFormattedStopWatchTime(run.timeInMillis)
             val caloriesBurned = "${run.caloriesBurned} kcal"
             tvCalories.text = caloriesBurned
+            val stepText = if (run.steps.roundToInt() > 1) {
+                "steps"
+            } else {
+                "step"
+            }
 
-            tvSteps.text = "${run.steps.roundToInt()} steps"
+            tvSteps.text = "${run.steps.roundToInt()} $stepText"
         }
     }
 
