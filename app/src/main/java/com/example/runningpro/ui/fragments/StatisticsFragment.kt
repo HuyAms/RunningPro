@@ -71,6 +71,7 @@ class StatisticsFragment: Fragment(R.layout.fragment_statistics) {
                 val km = it / 1000f
                 val totalDistance = round(km * 10f) / 10f
                 val totalDistanceString = "${totalDistance}km"
+                tvTotalDistance.text = totalDistanceString
             }
         })
 
