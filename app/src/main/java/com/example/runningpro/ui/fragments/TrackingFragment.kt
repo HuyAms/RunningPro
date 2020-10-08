@@ -1,8 +1,10 @@
 package com.example.runningpro.ui.fragments
 
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -11,6 +13,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -38,6 +41,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_tracking.*
+import pub.devrel.easypermissions.EasyPermissions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -87,6 +91,19 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), SensorEventListen
         }
         subscribeToObservers()
         getWeather("helsinki")
+
+        if (ActivityCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.ACTIVITY_RECOGNITION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACTIVITY_RECOGNITION),
+                0
+            )
+        }
+
         sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
@@ -152,6 +169,12 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), SensorEventListen
             sendCommandToService(ACTION_PAUSE_SERVICE)
         } else {
             sendCommandToService(ACTION_START_OR_RESUME_SERVICE)
+
+            var stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+
+            if (stepsSensor != null) {
+                sensorManager?.registerListener(this, stepsSensor, SensorManager.SENSOR_DELAY_UI)
+            }
         }
     }
 
@@ -220,6 +243,10 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), SensorEventListen
             val caloriesBurned = ((distanceInMeters / 1000f) * weight).toInt()
             val run = Run(bmp, dateTimestamp, avgSpeed, distanceInMeters, curTimeInMillis, caloriesBurned, steps)
             viewModel.insertRun(run)
+            steps = 0f //reset step
+            txtStep.text = "Step: 0"
+            sensorManager?.unregisterListener(this)
+
             Snackbar.make(
                 requireActivity().findViewById(R.id.rootView),
                 "Run saved successfully",
@@ -248,11 +275,6 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), SensorEventListen
     override fun onResume() {
         super.onResume()
         mapView?.onResume()
-        var stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
-
-        if (stepsSensor != null) {
-            sensorManager?.registerListener(this, stepsSensor, SensorManager.SENSOR_DELAY_UI)
-        }
     }
 
     override fun onStart() {
@@ -301,8 +323,6 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), SensorEventListen
                     val data = response.body() as WeatherResponse
                     weather.text = "Weather: ${data.weather[0].description}"
 
-                    Log.d("RESPONSE WEATHER: ", data.weather[0].description)
-
                 }
             }
 
@@ -313,12 +333,14 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), SensorEventListen
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
-
     }
 
     override fun onSensorChanged(p0: SensorEvent?) {
+
         if (p0 != null) {
             steps = p0.values[0]
-        };
+            Log.d("STEPS: ", steps.toString())
+            txtStep.text = "Step: $steps"
+        }
     }
 }
