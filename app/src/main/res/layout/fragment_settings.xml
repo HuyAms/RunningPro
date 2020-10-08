@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tilWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColorHint="@android:color/white"
+        app:hintTextColor="@color/md_blue_50"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -36,7 +36,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
-        android:textColorHint="@android:color/white"
+        app:hintTextColor="@color/md_blue_50"
         >
 
         <com.google.android.material.textfield.TextInputEditText
