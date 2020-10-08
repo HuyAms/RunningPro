@@ -11,7 +11,6 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_settings.*
-import kotlinx.android.synthetic.main.fragment_setup.*
 import kotlinx.android.synthetic.main.fragment_setup.etName
 import kotlinx.android.synthetic.main.fragment_setup.etWeight
 import javax.inject.Inject
