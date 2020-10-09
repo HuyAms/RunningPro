@@ -57,17 +57,22 @@ class RunAdapter : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
             val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
             tvDate.text = dateFormat.format(calendar.time)
 
-            val avgSpeed = "${run.avgSpeedInKMH}km/h"
+            val avgSpeed = "${run.avgSpeedInKMH} km/h"
             tvAvgSpeed.text = avgSpeed
 
-            val distanceInKm = "${run.distanceInMeters / 1000f}km"
+            val distanceInKm = "${run.distanceInMeters / 1000f} km"
             tvDistance.text = distanceInKm
 
             tvTime.text = TrackingUtility.getFormattedStopWatchTime(run.timeInMillis)
-            val caloriesBurned = "${run.caloriesBurned}kcal"
+            val caloriesBurned = "${run.caloriesBurned} kcal"
             tvCalories.text = caloriesBurned
+            val stepText = if (run.steps.roundToInt() > 1) {
+                "steps"
+            } else {
+                "step"
+            }
 
-            tvSteps.text = "${run.steps.roundToInt()}steps"
+            tvSteps.text = "${run.steps.roundToInt()} $stepText"
         }
     }
 

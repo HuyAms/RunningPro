@@ -13,7 +13,9 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/tilWeight"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:hintTextColor="@color/md_blue_50"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etName"
@@ -33,7 +35,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3">
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:hintTextColor="@color/md_blue_50"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etWeight"

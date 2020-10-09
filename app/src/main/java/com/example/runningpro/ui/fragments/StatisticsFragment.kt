@@ -70,14 +70,15 @@ class StatisticsFragment: Fragment(R.layout.fragment_statistics) {
             it?.let {
                 val km = it / 1000f
                 val totalDistance = round(km * 10f) / 10f
-                val totalDistanceString = "${totalDistance}km"
+                val totalDistanceString = "$totalDistance km"
+                tvTotalDistance.text = totalDistanceString
             }
         })
 
         viewModel.totalAvgSpeed.observe(viewLifecycleOwner, Observer {
             it?.let {
                 val avgSpeed = round(it * 10f) / 10f
-                val avgSpeedString = "${avgSpeed}km/h"
+                val avgSpeedString = "$avgSpeed km/h"
                 tvAverageSpeed.text = avgSpeedString
 
             }
@@ -85,7 +86,7 @@ class StatisticsFragment: Fragment(R.layout.fragment_statistics) {
 
         viewModel.totalCaloriesBurned.observe(viewLifecycleOwner, Observer {
             it?.let {
-                val totalCalories = "${it}kal"
+                val totalCalories = "$it kal"
                 tvTotalCalories.text = totalCalories
             }
         })
@@ -96,6 +97,7 @@ class StatisticsFragment: Fragment(R.layout.fragment_statistics) {
                 val bardataSet = BarDataSet(allAvgSpeeds, "Avg Speed Over Time").apply {
                     valueTextColor = Color.WHITE
                     color = ContextCompat.getColor(requireContext(), R.color.colorAccent)
+                    valueTextSize = 14f
                 }
 
                 barChart.data = BarData(bardataSet)
