@@ -7,7 +7,7 @@ Apps make it easier than ever to stay motivated and stick to your routine. When 
 We introduce you the **Running Pro** app
 
 ## Features
-- Kotlin 
+- **Kotlin**
 - **Step tracking sensor:** Track running step and calculate calories based on distance and weight
 - **4 Fragments:** Settings, Setup, Traciking, Statistics
 - **3 Android components:** Activity, Service, Content provider
