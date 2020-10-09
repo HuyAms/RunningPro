@@ -15,6 +15,7 @@ We introduce you the **Running Pro** app
 - **GPS:** Track user's location on map
 - **Map:** Show user's running route
 - **MPAndroid Chart:** Visualize running data
+- **Dagger Hilt:** Inject dependencies
 - **Retrofit:** Networking, fetch weather data from Open weather API
 - **ViewModel, LiveData:** MVVM Architecture for clean code
 - **UI/UX:** Follow android material design
