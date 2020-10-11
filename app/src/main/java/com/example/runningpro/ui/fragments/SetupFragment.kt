@@ -34,7 +34,7 @@ class SetupFragment: Fragment(R.layout.fragment_setup) {
             findNavController().navigate(R.id.action_setupFragment_to_runFragment, savedInstanceState, navOptions)
         }
 
-        tvContinue.setOnClickListener {
+        btnContinue.setOnClickListener {
             val success = writePersonalDataToSharedPref()
 
             if (success) {
