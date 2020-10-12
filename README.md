@@ -14,6 +14,7 @@ We introduce you the **Running Pro** app
 - **Persistence (Room):** Save user info and running history data
 - **GPS:** Track user's location on map
 - **Map:** Show user's running route
+- **Camera**: Set avatar and checkpoint
 - **MPAndroid Chart:** Visualize running data
 - **Dagger Hilt:** Inject dependencies
 - **Retrofit:** Networking, fetch weather data from Open weather API
