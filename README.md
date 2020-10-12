@@ -23,6 +23,11 @@ We introduce you the **IRun** app
 - **ViewModel, LiveData:** MVVM Architecture for clean code
 - **UI/UX:** Follow android material design
 
+## Upcomming features
+- **Running gamification:** When user starts his/her run, the game will begin. There will be multiple checkpoints which user needs to reach out in time which depends on the level. At each checkpoint, user has to use **AR feature** to look for a hint which leads to the next checkpoint. The length of the game will depend on user's current health and body indices such as weight or height.
+
+- **Ranking and rewarding:** User will be ranked based on their statistics in a seasonal ranking system. After season ends, user will get an achievement badge. If we can get some income/funding, the reward can be some vouchers for gym/yoga class.  
+
 ## Architecture: MVVM
 
 **MVVM** stands for Model, View, ViewModel.
