@@ -1,10 +1,12 @@
-# RunningPro
+# IRun - Grow forest while running
 
 If you’re like us, your smartphone is your go-to for just about everything. Capturing memories, getting directions, keeping up with loved ones – the list goes on and on. It goes everywhere with us, and that includes our workouts.
 
 Apps make it easier than ever to stay motivated and stick to your routine. When it comes to running, they can track your pace, distance, calories, running routes and more, all to help you reach your fitness goals.
 
-We introduce you the **Running Pro** app
+Set your goal and run. Whenever you run, plant a tree. You tree will grow while you are running!!
+
+We introduce you the **IRun** app
 
 ## Features
 - **Kotlin**
