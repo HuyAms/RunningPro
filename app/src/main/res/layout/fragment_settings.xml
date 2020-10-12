@@ -10,12 +10,11 @@
         android:id="@+id/tilName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/tilWeight"
+        android:layout_marginTop="32dp"
+        app:hintTextColor="@color/md_blue_50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:hintTextColor="@color/md_blue_50"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/imgAva">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etName"
@@ -31,13 +30,12 @@
         android:id="@+id/tilWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        android:layout_marginTop="24dp"
+        app:hintTextColor="@color/md_blue_50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:hintTextColor="@color/md_blue_50"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tilName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etWeight"
@@ -53,17 +51,22 @@
         android:id="@+id/btnApplyChanges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilWeight" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+    <ImageButton
+        android:id="@+id/imgAva"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="74dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ava"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

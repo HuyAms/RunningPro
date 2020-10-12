@@ -1,7 +1,11 @@
 package com.example.runningpro.ui.fragments
 
+import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.runningpro.R
@@ -21,6 +25,8 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
+    val REQUEST_CODE = 200
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadFieldsFromSharedPref()
@@ -33,6 +39,23 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
                 Snackbar.make(view, "Please fill out all the fields", Snackbar.LENGTH_LONG).show()
             }
         }
+
+        imgAva.setOnClickListener {
+            capturePhoto()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null){
+            imgAva.setImageBitmap(data.extras?.get("data") as Bitmap)
+        }
+    }
+
+    private fun capturePhoto() {
+
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, REQUEST_CODE)
     }
 
     private fun loadFieldsFromSharedPref() {
