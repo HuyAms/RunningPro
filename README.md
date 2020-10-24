@@ -1,10 +1,12 @@
-# RunningPro
+# IRun - Grow forest while running
 
 If you’re like us, your smartphone is your go-to for just about everything. Capturing memories, getting directions, keeping up with loved ones – the list goes on and on. It goes everywhere with us, and that includes our workouts.
 
 Apps make it easier than ever to stay motivated and stick to your routine. When it comes to running, they can track your pace, distance, calories, running routes and more, all to help you reach your fitness goals.
 
-We introduce you the **Running Pro** app
+Set your goal and run. Whenever you run, plant a tree. Your tree will grow while you are running!!
+
+We introduce you the **IRun** app
 
 ## Features
 - **Kotlin**
@@ -14,11 +16,17 @@ We introduce you the **Running Pro** app
 - **Persistence (Room):** Save user info and running history data
 - **GPS:** Track user's location on map
 - **Map:** Show user's running route
+- **Camera**: Set avatar and checkpoint
 - **MPAndroid Chart:** Visualize running data
 - **Dagger Hilt:** Inject dependencies
 - **Retrofit:** Networking, fetch weather data from Open weather API
 - **ViewModel, LiveData:** MVVM Architecture for clean code
 - **UI/UX:** Follow android material design
+
+## Upcoming features
+- **Running gamification:** When user starts his/her run, the game will begin. There will be multiple checkpoints which user needs to reach out in time which depends on the level. At each checkpoint, user has to use **AR feature** to look for a hint which leads to the next checkpoint. The length of the game will depend on user's current health and body indices such as weight or height.
+
+- **Ranking and rewarding:** User will be ranked based on their statistics in a seasonal ranking system. After season ends, user will get an achievement badge. If we can get some income/funding, the reward can be some vouchers for gym/yoga class.  
 
 ## Architecture: MVVM
 
